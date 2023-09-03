@@ -1,6 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, sequelize } = require('sequelize');
 
-const sequelize = require('../config/config.js');
 
 class Tag extends Model { }
 

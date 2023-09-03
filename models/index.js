@@ -1,13 +1,10 @@
-// import connection to database
-const db = require('../config/config');
-
 // import models
 const Product = require('./Product');
 const Category = require('./Category');
 const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
 
-const db = {
+
   // Products belongsTo Category
   Product.belongsTo(Category, {
     foreignKey: 'category_id',
@@ -23,14 +20,14 @@ const db = {
   Product.belongsToMany(Tag, {
     through: ProductTag,
     foreignKey: 'product_id'
-  })
+  }),
 
 // Tags belongToMany Products (through ProductTag)
 Tag.belongsToMany(Product, {
     through: ProductTag,
     foreignKey: 'tag_id'
   })
-};
+
 module.exports = {
   Product,
   Category,
