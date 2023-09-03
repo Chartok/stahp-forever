@@ -18,4 +18,5 @@ const sequelize = process.env.JAWSDB_URL
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+
 module.exports = db;
