@@ -1,16 +1,24 @@
-const express = require('express');
-const routes = require('./routes');
-// import sequelize connection
+const express = require( 'express' );
+const cors = require( 'cors' );
+const routes = require( './routes' );
+const { sequelize } = require( './config/config' );
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+let corsOptions = {
+  origin: `http://127.0.0.1`
+};
 
-app.use(routes);
+app.use( cors( corsOptions ) );
+app.use( express.json() );
+app.use( express.urlencoded( { extended: true } ) );
 
-// sync sequelize models to the database, then turn on the server
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
-});
+app.use( routes );
+
+// connect to sequelize, turn on the server
+sequelize.sync( { force: false } ).then( () => {
+  app.listen( PORT, () => {
+    console.log( `App listening on local host port http://localhost:${ PORT }!` );
+  } );
+} );

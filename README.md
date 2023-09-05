@@ -20,7 +20,7 @@
 
   ## Usage
 
-  N/A
+  Backend for e-commerce focused application; using MySQL2, express, and sequelize to connect database and routes to run on express server.
 
   ## Contributing
 

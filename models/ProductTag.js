@@ -1,8 +1,9 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require( 'sequelize' );
 
-const sequelize = require('../config/connection');
+// open channel to sequelize
+const { sequelize } = require( '../config/config' );
 
-class ProductTag extends Model {}
+class ProductTag extends Model { }
 
 ProductTag.init(
   {
