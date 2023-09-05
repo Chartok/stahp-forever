@@ -6,16 +6,16 @@ const { Tag, Product, ProductTag, Category } = require('../../models');
 router.get('/', async (req, res) => {
   // find all tags
   try {
-    const products = await Product.findAll({
+    const tags = await Tag.findAll({
       include: [
         Category,
         {
           model: Tag,
-          through: ProductTag,
+          through: ProductTag, Product
         },
       ],
     });
-    res.json(products);
+    res.json(tags);
   } catch (err) {
     console.log('There was an error retrieving the products', err);
     res.status(500).json(err);
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
   try{
-    const product = await Product.findOne({
+    const tag = await Tag.findOne({
       where: {
         id: req.params.id
       },
@@ -37,7 +37,7 @@ router.get('/:id', async (req, res) => {
         },
       ],
     });
-    res.json(product);
+    res.json(tag);
   } catch (err) {
     console.log('There was an error retrieving the product', err);
     res.status(500).json(err);
@@ -47,14 +47,14 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // create a new tag
   try{
-    const product = await Product.create({
+    const tag = await Tag.create({
       product_name: req.body.product_name,
       price: req.body.price,
       stock: req.body.stock,
       backorder: req.body.backorder,
       category_id: req.body.category_id,
     });
-    res.json(product);
+    res.json(tag);
   } catch (err) {
     console.log('There was an error creating the product', err);
     res.status(500).json(err);
