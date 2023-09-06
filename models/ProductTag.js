@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require( 'sequelize' );
+const { Model, DataTypes, Sequelize } = require( 'sequelize' );
 
 // open channel to sequelize
 const { sequelize } = require( '../config/config' );
@@ -18,14 +18,16 @@ ProductTag.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'product',
-        key: 'id'
+        key: 'id',
+        unique: false
       },
     },
     tag_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'tag',
-        key: 'id'
+        key: 'id',
+        unique: false
       },
     },
   },

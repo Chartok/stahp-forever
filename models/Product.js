@@ -1,5 +1,5 @@
 // import sequelize library
-const { Model, DataTypes } = require( 'sequelize' );
+const { Model, DataTypes, Sequelize } = require( 'sequelize' );
 
 // open channel to sequelize
 const { sequelize } = require( '../config/config' );
@@ -44,7 +44,8 @@ Product.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'category',
-        key: 'id'
+        key: 'id',
+        unique: false
       }
     }
   },
